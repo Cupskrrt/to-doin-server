@@ -1,11 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import {Task} from './models/TaskModel.js';
 import {config} from 'dotenv';
 config();
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 const PORT = 5011;
 
