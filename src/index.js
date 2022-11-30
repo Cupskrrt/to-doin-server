@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import {Task} from './models/TaskModel.js';
+import {config} from 'dotenv';
+config();
 
 const app = express();
 app.use(express.json());
@@ -21,12 +23,8 @@ app.post('/task', async (req, res) => {
   res.json(createdTask);
 });
 
-mongoose
-  .connect(
-    'mongodb+srv://to-doin:e9aOFJhsJKGIWRx7@to-doin.fbwll9v.mongodb.net/?retryWrites=true&w=majority'
-  )
-  .then(() => {
-    console.log(`listening on port ${PORT}`);
+mongoose.connect(process.env.MONGO_URL).then(() => {
+  console.log(`listening on port ${PORT}`);
 
-    app.listen(PORT);
-  });
+  app.listen(PORT);
+});
