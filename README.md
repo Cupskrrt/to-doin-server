@@ -11,3 +11,4 @@ TODO:
 - [] Make the api more secure
 - [] Create rest of the api route (currently still 1 api route)
 - [] Refactor the code
+- [] Remake the api endpoint to make it better
