@@ -20,26 +20,26 @@ router.get("/count", async (req, res) => {
 
 //POST Route
 router.post("/", (req, res) => {
-  const newTask = new Task({
+  new Task({
     title: req.body.title,
     important: req.body.important,
     date: req.body.date,
   }).save();
-  res.send(newTask);
+  res.send("Successfully added new task");
 });
 
 //PATCH Route
 router.patch("/:taskId", async (req, res) => {
   const id = req.params.taskId;
   const updates = req.body;
-  const updatedTask = await Task.findByIdAndUpdate(id, updates, { new: true });
-  res.send(updatedTask);
+  await Task.findByIdAndUpdate(id, updates, { new: true });
+  res.send("Successfully updating task");
 });
 
 //DELETE Route
 router.delete("/:taskId", async (req, res) => {
-  const deletedTask = await Task.findByIdAndDelete({ _id: req.params.taskId });
-  res.send(deletedTask);
+  await Task.findByIdAndDelete({ _id: req.params.taskId });
+  res.send("Successfully deleteing task");
 });
 
 export default router;
