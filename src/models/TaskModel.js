@@ -1,10 +1,13 @@
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
-// const ObjectId = Schema.ObjectId;
 
 const TaskSchema = new Schema({
   title: String,
+  important: Boolean,
+  date: Date,
 });
 
-export const Task = mongoose.model("Task", TaskSchema);
+const TaskModel = mongoose.model("Task", TaskSchema);
+
+export default TaskModel;
