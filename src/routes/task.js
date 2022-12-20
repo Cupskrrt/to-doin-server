@@ -10,20 +10,46 @@ router.get("/", async (req, res) => {
 });
 
 //GET Count Router
-router.get("/count", async (req, res) => {
-  const count = await Task.count({}, (err, count) => {
-    if (err) console.log(err);
-    else return count;
-  }).clone();
-  res.send("Count " + count);
+router.get("/count/to-do", async (req, res) => {
+  const count = await Task.find()
+    .count({}, (err, count) => {
+      if (err) console.log(err);
+      else return count;
+    })
+    .clone();
+  res.send(`${count}`);
 });
+
+router.get("/count/important", async (req, res) => {
+  const count = await Task.find({ important: true })
+    .count({}, (err, count) => {
+      if (err) console.log(err);
+      else return count;
+    })
+    .clone();
+  res.send(`${count}`);
+});
+
+router.get("/count/today", async (req, res) => {
+  const count = await Task.find({ date: new Date().toLocaleDateString() })
+    .count({}, (err, count) => {
+      if (err) console.log(err);
+      else return count;
+    })
+    .clone();
+  res.send(`${count}`);
+});
+
+console.log(new Date().toJSON());
 
 //POST Route
 router.post("/", (req, res) => {
+  const date = new Date(req.body.date).toLocaleDateString();
   new Task({
     title: req.body.title,
     important: req.body.important,
-    date: req.body.date,
+    date: date,
+    tag: req.body.tag,
   }).save();
   res.send("Successfully added new task");
 });

@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const TaskSchema = new Schema({
   title: String,
   important: Boolean,
-  date: Date,
+  date: String,
+  tag: String,
 });
 
 const TaskModel = mongoose.model("Task", TaskSchema);
