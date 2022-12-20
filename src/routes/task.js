@@ -9,7 +9,19 @@ router.get("/", async (req, res) => {
   res.send(tasks);
 });
 
-//GET Count Router
+//GET Important Route
+router.get("/important", async (req, res) => {
+  const tasks = await Task.find({ important: true });
+  res.send(tasks);
+});
+
+//GET Today Route
+router.get("/today", async (req, res) => {
+  const tasks = await Task.find({ date: new Date().toLocaleDateString() });
+  res.send(tasks);
+});
+
+//GET Count Route
 router.get("/count/to-do", async (req, res) => {
   const count = await Task.find()
     .count({}, (err, count) => {
