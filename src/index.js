@@ -4,7 +4,8 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 
 //Routes
-import taskRoute from "./routes/task.js";
+import taskRoute from "./routes/taskRoute.js";
+import tagRoute from "./routes/tagRoute.js";
 
 //Start the DOTENV
 config();
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/task", taskRoute);
+app.use("/api/tag", tagRoute);
 
 //Start the server
 app.listen(port, () => {
