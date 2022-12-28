@@ -6,7 +6,7 @@ const TaskSchema = new Schema({
   title: String,
   important: Boolean,
   date: String,
-  tag: String,
+  tag: { type: mongoose.Schema.Types.ObjectId, ref: "Tag" },
 });
 
 const TaskModel = mongoose.model("Task", TaskSchema);
