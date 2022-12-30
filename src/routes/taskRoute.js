@@ -11,13 +11,15 @@ router.get("/", async (req, res) => {
 
 //GET Important Route
 router.get("/important", async (req, res) => {
-  const tasks = await Task.find({ important: true });
+  const tasks = await Task.find({ important: true }).populate("tag");
   res.send(tasks);
 });
 
 //GET Today Route
 router.get("/today", async (req, res) => {
-  const tasks = await Task.find({ date: new Date().toLocaleDateString() });
+  const tasks = await Task.find({
+    date: new Date().toLocaleDateString(),
+  }).populate("tag");
   res.send(tasks);
 });
 
