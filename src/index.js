@@ -28,6 +28,8 @@ app.use("/api/tag", tagRoute);
 
 //Start the server
 app.listen(port, () => {
-  mongoose.connect(process.env.MONGO_URL);
+  mongoose.connect(process.env.MONGO_URL, () => {
+    console.log("Connected to MongoDB");
+  });
   console.log(`Listening on port ${port}`);
 });
