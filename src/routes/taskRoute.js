@@ -52,6 +52,11 @@ router.get("/count/today", async (req, res) => {
   res.send(`${count}`);
 });
 
+router.get("/:tagId", async (req, res) => {
+  const tasks = await Task.find({ tag: req.params.tagId }).populate("tag");
+  res.send(tasks);
+});
+
 console.log(new Date().toJSON());
 
 //POST Route
