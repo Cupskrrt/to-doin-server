@@ -8,6 +8,11 @@ router.get("/", async (req, res) => {
   res.send(tags);
 });
 
+router.get("/:tagId", async (req, res) => {
+  const tag = await Tag.findById({ _id: req.params.tagId });
+  res.send(tag);
+});
+
 router.post("/", (req, res) => {
   new Tag({
     title: req.body.title,
